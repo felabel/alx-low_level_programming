@@ -1,21 +1,35 @@
-#include <stdio.h>
-#include <math.h>
+#include "main.h"
+
 /**
- * main - Entry point of program
- * Return: 0 (Success)
+ * print_triangle - function that prints triangle
+ * @size: function parameter
+ * Return: 0 always (Success)
  */
 
-int main(void)
+void print_triangle(int size)
 {
-	long x, maxf;
-	long int num = 612852475143;
-	double square = sqrt(num);
+	int x;
+	int y;
+	int z;
 
-	for (x = 1; x <= square; x++)
+	if (size <= 0)
 	{
-		if (num % x == 0)
-			maxf = num / x;
+		_putchar('\n');
 	}
-	printf("%ld\n", maxf);
-	return (0);
+	else
+	{
+		for (x = 0; x < size; x++)
+		{
+			for (y = size - x; y > 1; y--)
+			{
+				_putchar(32);
+			}
+			for (z = 0; z <= x; z++)
+			{
+				_putchar(35);
+			}
+			_putchar('\n');
+		}
+	}
+
 }
