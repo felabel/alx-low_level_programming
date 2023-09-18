@@ -1,1 +1,1 @@
-first day of c
+learning pointers and array in C
