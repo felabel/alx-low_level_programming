@@ -1,72 +1,38 @@
 #include "main.h"
 #include <stdio.h>
 #include <string.h>
-
 /**
- * infinite_add - add 2 strings.
- * @n1: string1.
- * @n2: string2.
- * @r: buffer
- * @size_r: buffer size
- * Return: String (Success).
+ * infinite_add - Adds two numbers.
+ * @n1: The first number as a string.
+ * @n2: The second number as a string.
+ * @r: The buffer to store the result.
+ * @size_r: The size of the buffer.
+ *
+ * Return: A pointer to the result (r), or 0 if the result cannot be stored.
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int i = 0, j = 0;
-int val1 = 0, val2 = 0, temp_tot = 0;
-int overflow = 0;
-int digits = 0;
-int len;
+	int carry = 0;
+	int sum;
+	int index_n1 = strlen(n1) - 1;
+	int index_n2 = strlen(n2) - 1;
+	int index_r = size_r - 1;
+	r[index_r] = '\0'; // Null-terminate the result string
 
-while (n1[i] != '\0')
-i++;
-while (n2[j] != '\0')
-j++;
-i--;
-j--;
-
-if (j >= size_r - 1 || i >= size_r - 1)
-return (0);
-
-while (j >= 0 || i >= 0 || overflow == 1)
-{
-if (i < 0)
-val1 = 0;
-else
-val1 = n1[i] - '0';
-
-if (j < 0)
-val2 = 0;
-else
-val2 = n2[j] - '0';
-
-temp_tot = val1 + val2 + overflow;
-if (temp_tot >= 10)
-overflow = 1;
-else
-overflow = 0;
-
-if (digits >= (size_r - 1))
-return (0);
-
-r[digits] = (temp_tot % 10) + '0';
-digits++;
-j--;
-i--;
-}
-
-if (digits >= (size_r - 1))
-return (0);
-
-r[digits] = '\0';
-
-/* Reversing the string using a simple loop*/
-len = strlen(r);
-for (i = 0; i < len / 2; i++)
-{
-char temp = r[i];
-r[i] = r[len - i - 1];
-r[len - i - 1] = temp;
-}
-return (r);
+	while (index_n1 >= 0 || index_n2 >= 0 || carry > 0)
+	{
+		sum = carry;
+		if (index_n1 >= 0)
+			sum += n1[index_n1] - '0';
+		if (index_n2 >= 0)
+			sum += n2[index_n2] - '0';
+		if (index_r < 0)
+			return (0); 
+		r[index_r] = (sum % 10) + '0'; 
+    carry = sum / 10; 
+		index_n1--;
+		index_n2--;
+		index_r--;
+	}
+	return (r + index_r + 1); 
 }
