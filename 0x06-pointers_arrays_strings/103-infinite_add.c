@@ -34,7 +34,6 @@ if (i < 0)
 val1 = 0;
 else
 val1 = n1[i] - '0';
-
 if (j < 0)
 val2 = 0;
 else
@@ -45,7 +44,6 @@ if (temp_tot >= 10)
 overflow = 1;
 else
 overflow = 0;
-
 if (digits >= (size_r - 1))
 return (0);
 
