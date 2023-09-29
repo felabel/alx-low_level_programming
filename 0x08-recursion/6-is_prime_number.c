@@ -1,28 +1,33 @@
 #include "main.h"
 
+int actual_sqrt_recursion(int n, int i);
+
 /**
- * is_prime_number- check if the number is prime
- * @n: The number.
- * Return: The result of x^y, or -1 if y is negative.
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: number to calculate the square root of
+ *
+ * Return: the resulting square root
  */
-int is_prime_number(int n)
+int _sqrt_recursion(int n)
 {
-if (n <= 1)
-{
-return (0);
+	if (n < 0)
+		return (-1);
+	return (actual_sqrt_recursion(n, 0));
 }
-for (int i = 2; i * i <= n; i++)
+
+/**
+ * actual_sqrt_recursion - recurses to find the natural
+ * square root of a number
+ * @n: number to calculate the sqaure root of
+ * @i: iterator
+ *
+ * Return: the resulting square root
+ */
+int actual_sqrt_recursion(int n, int i)
 {
-if (n % i == 0)
-{
-_putchar(0);
-return (0);
-}
-else
-{
-_putchar(1);
-return (1);
-}
-}
-return (is_prime_number(n));
+	if (i * i > n)
+		return (-1);
+	if (i * i == n)
+		return (i);
+	return (actual_sqrt_recursion(n, i + 1));
 }
